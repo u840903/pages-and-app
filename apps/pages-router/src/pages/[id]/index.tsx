@@ -1,14 +1,21 @@
 import type { GetStaticProps, GetStaticPropsResult } from "next";
+import Head from "next/head";
 
 interface Props {
   id: string;
 }
 
-const IdPage = (props:Props) => {
+const IdPage = (props: Props) => {
   return (
-    <div>Pages Router ID: {props.id}</div>
+    <>
+      <Head>
+        <title>{props.id}</title>
+      </Head>
+      <div>Pages Router ID: {props.id}</div>
+    </>
+
   );
-}
+};
 
 export const getStaticProps: GetStaticProps<Props> = async (
   context
@@ -16,16 +23,16 @@ export const getStaticProps: GetStaticProps<Props> = async (
   const id = context.params?.id as string;
   return {
     props: {
-      id,
-    },
+      id
+    }
   };
-}
+};
 
 export const getStaticPaths = async () => {
   return {
     paths: [],
-    fallback: true,
+    fallback: true
   };
-}
+};
 
 export default IdPage;
